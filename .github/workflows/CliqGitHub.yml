@@ -25,7 +25,7 @@ on:
   workflow_run:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 1'  # Weekly summary every Monday at 9am UTC
+    - cron: '0 9 * * 1'
   page_build:
   registry_package:
   gollum:
@@ -39,7 +39,7 @@ jobs:
           channel-endpoint: ${{ secrets.ENDPOINT }}
 
           # ── PUSH & COMMITS ──────────────────────────────────────────
-          push-message: "🚀 *Push by ${{ github.actor }}* on `${{ github.ref_name }}` in ${{ github.repository }} — ${{ github.event.commits | length }} commit(s). View: ${{ github.event.compare }}"
+          push-message: "🚀 *Push by ${{ github.actor }}* on ${{ github.ref_name }} in ${{ github.repository }}. View changes: ${{ github.event.compare }}"
 
           # ── PULL REQUESTS ────────────────────────────────────────────
           pull-request-message: "📋 *PR ${{ github.event.action }}* by ${{ github.actor }} in ${{ github.repository }} — #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
@@ -74,13 +74,13 @@ jobs:
 
           # ── RELEASES & PACKAGES ──────────────────────────────────────
           release-message: "🎉 *Release ${{ github.event.action }}*: ${{ github.event.release.name }} (${{ github.event.release.tag_name }}) in ${{ github.repository }}"
-          registry-package-message: "📦 *Package ${{ github.event.action }}*: ${{ github.event.registry_package.name }} v${{ github.event.registry_package.package_version.name }} in ${{ github.repository }}"
+          registry-package-message: "📦 *Package ${{ github.event.action }}*: ${{ github.event.registry_package.name }} in ${{ github.repository }}"
           page-build-message: "🌐 *GitHub Pages Build* triggered in ${{ github.repository }}"
 
           # ── REPO EVENTS ──────────────────────────────────────────────
-          create-message: "🌿 *${{ github.event.ref_type }} created*: `${{ github.event.ref }}` in ${{ github.repository }} by ${{ github.actor }}"
-          delete-message: "🗑️ *${{ github.event.ref_type }} deleted*: `${{ github.event.ref }}` in ${{ github.repository }} by ${{ github.actor }}"
-          fork-message: "🍴 *${{ github.repository }} was forked* by ${{ github.actor }} → ${{ github.event.forkee.full_name }}"
+          create-message: "🌿 *${{ github.event.ref_type }} created*: ${{ github.event.ref }} in ${{ github.repository }} by ${{ github.actor }}"
+          delete-message: "🗑️ *${{ github.event.ref_type }} deleted*: ${{ github.event.ref }} in ${{ github.repository }} by ${{ github.actor }}"
+          fork-message: "🍴 *${{ github.repository }} was forked* by ${{ github.actor }} to ${{ github.event.forkee.full_name }}"
           watch-message: "⭐ *${{ github.repository }} was starred* by ${{ github.actor }}"
           public-message: "🌍 *${{ github.repository }} has been made public!*"
           gollum-message: "📖 *Wiki page updated* in ${{ github.repository }} by ${{ github.actor }}"
@@ -89,9 +89,9 @@ jobs:
           discussion-message: "🗣️ *Discussion ${{ github.event.action }}* by ${{ github.actor }} in ${{ github.repository }} — ${{ github.event.discussion.title }}"
           discussion-comment-message: "💬 *Discussion Comment* by ${{ github.actor }} in ${{ github.repository }}"
 
-          # ── SCHEDULED ───────────────────────────────────────────────
+          # ── SCHEDULED ────────────────────────────────────────────────
           schedule-message: "📅 *Weekly Digest*: Scheduled workflow ran for ${{ github.repository }}"
 
           # ── FALLBACK ─────────────────────────────────────────────────
-          default-message: "⚡ *${{ github.event_name }} (${{ github.event.action }})* in ${{ github.repository }} by ${{ github.actor }}"
+          default-message: "⚡ *${{ github.event_name }}* in ${{ github.repository }} by ${{ github.actor }}"
           set-message-if-none: true
