@@ -324,8 +324,8 @@ runs:
         id: display-output
         shell: bash
         run: |
-          STATUS="${{steps.send-message.outputs.message-status}}"
-          ERROR="${{steps.send-message.outputs.error-message}}"
+          STATUS="${{ steps.send-message.outputs.message-status }}"
+          ERROR="${{ steps.send-message.outputs.error-message }}"
           
           echo "Message Status: $STATUS"
           [[ -n "$ERROR" ]] && echo "Error Message: $ERROR"
