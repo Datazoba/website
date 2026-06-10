@@ -98,17 +98,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-      - name: Set Up Checkout
-        uses: actions/checkout@v1
-      - name: Set Up JDK 19
-        id: setup-jdk
-        uses: actions/setup-java@v3
-        with:
-          java-version: '19'
-          distribution: 'temurin'
-      - name: Set Up Checkout
-        id: setup-checkout
-        uses: actions/checkout@v3
       - name: Setting Message Content
         id: action-finder
         shell: bash
@@ -291,21 +280,61 @@ runs:
       - name: "Running the Cliq Integration"
         id: send-message
         shell: bash
+        timeout-minutes: 2
         run: |
-          JAVA=$JAVA_HOME_19_X64/bin/java
-          CONNECTOR=$GITHUB_ACTION_PATH/src/GitHub_Informer.java
-          if [[ "${{ env.message }}" != "" ]]; then
-            $JAVA $CONNECTOR "${{ inputs.channel-endpoint }}"
-          elif [[ "${{ env.message }}" == "" && "${{ inputs.set-message-if-none }}" == "true" ]]; then
-            $JAVA $CONNECTOR "${{ inputs.channel-endpoint }}"
+          ENDPOINT="${{ inputs.channel-endpoint }}"
+          MESSAGE="${{ env.message }}"
+          
+          # Check if message is empty and set-message-if-none is true
+          if [[ -z "$MESSAGE" && "${{ inputs.set-message-if-none }}" != "true" ]]; then
+            echo "message-status=skipped" >> $GITHUB_OUTPUT
+            echo "error-message=No message configured for this event" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Use default message if empty
+          if [[ -z "$MESSAGE" ]]; then
+            MESSAGE="${{ inputs.default-message }}"
+          fi
+          
+          # Send to Cliq endpoint with timeout
+          RESPONSE=$(timeout 30s curl -s -w "\n%{http_code}" -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"text\":\"$MESSAGE\"}" \
+            "$ENDPOINT" 2>&1)
+          
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+          
+          echo "HTTP Response Code: $HTTP_CODE"
+          echo "Response Body: $BODY"
+          
+          if [[ "$HTTP_CODE" == "204" ]]; then
+            echo "message-status=204" >> $GITHUB_OUTPUT
+            exit 0
+          elif [[ "$HTTP_CODE" == "200" ]]; then
+            echo "message-status=200" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "message-status=$HTTP_CODE" >> $GITHUB_OUTPUT
+            echo "error-message=Cliq API returned HTTP $HTTP_CODE" >> $GITHUB_OUTPUT
+            exit 1
           fi
       - name: "Displaying Output"
         id: display-output
         shell: bash
         run: |
-          echo "${{steps.send-message.outputs.error-message}}"
-          if [[ "${{ steps.send-message.outputs.message-status }}" == "204" ]]; then 
+          STATUS="${{steps.send-message.outputs.message-status}}"
+          ERROR="${{steps.send-message.outputs.error-message}}"
+          
+          echo "Message Status: $STATUS"
+          [[ -n "$ERROR" ]] && echo "Error Message: $ERROR"
+          
+          if [[ "$STATUS" == "204" ]] || [[ "$STATUS" == "200" ]]; then
             echo "Message sent to Cliq Successfully"
+            exit 0
+          elif [[ "$STATUS" == "skipped" ]]; then
+            echo "Message skipped - no message configured for this event"
             exit 0
           else
             echo "Message Send Request Failed"
