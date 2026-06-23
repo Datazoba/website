@@ -5,7 +5,7 @@
 		"gdoc": "node tasks/fetch-google.js",
 		"style": "node tasks/style-dictionary.js",
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "wrangler types && vite build",
 		"preview": "vite preview",
 		"lint": "prettier --check --plugin-search-dir=. .",
 		"format": "prettier --write --plugin-search-dir=. ."
@@ -17,6 +17,7 @@
 		"@sveltejs/adapter-static": "^3.0.9",
 		"@sveltejs/kit": "^2.60.1",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/node": "^26.0.0",
 		"archieml": "^0.5.0",
 		"autoprefixer": "^10.5.0",
 		"bits-ui": "^2.18.1",
