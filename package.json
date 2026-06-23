@@ -13,7 +13,7 @@
 	"devDependencies": {
 		"@lucide/svelte": "^1.16.0",
 		"@rollup/plugin-dsv": "^3.0.5",
-		"@sveltejs/adapter-cloudflare": "^7.2.6",
+		"@sveltejs/adapter-cloudflare": "^7.2.9",
 		"@sveltejs/adapter-static": "^3.0.9",
 		"@sveltejs/kit": "^2.60.1",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",

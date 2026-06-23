@@ -36,6 +36,8 @@
 	<meta name="robots" content="max-image-preview:large" />
 
 	<link rel="canonical" href="{url}/" />
+	<link rel="icon" href="/assets/branding/dz.ico.ico?v=2" type="image/x-icon" />
+	<link rel="shortcut icon" href="/assets/branding/dz.ico.ico?v=2" type="image/x-icon" />
 
 	{#each preloadFont as href}
 		<link rel="preload" {href} as="font" type="font/woff2" crossorigin />
