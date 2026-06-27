@@ -1,4 +1,4 @@
-PHONY: github pudding
+PHONY: github datazoba
 
 github:
 	rm -rf docs
@@ -17,12 +17,12 @@ staging:
 
 production:
 	npm run build
-	make pudding
+	make datazoba
 
 # aws-sync:
-# 	aws s3 sync build s3://pudding.cool/year/month/name --delete --cache-control 'max-age=31536000'
+# 	aws s3 sync build s3://datazoba.com/year/month/name --delete --cache-control 'max-age=31536000'
 
 # aws-cache:
 # 	aws cloudfront create-invalidation --distribution-id E13X38CRR4E04D --paths '/year/month/name*'	
 
-# pudding: aws-sync aws-cache
+# datazoba: aws-sync aws-cache

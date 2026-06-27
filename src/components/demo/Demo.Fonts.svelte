@@ -10,9 +10,9 @@
 </script>
 
 <div id="info">
-	<h1>Hosted Fonts on The Pudding</h1>
+	<h1>Hosted Fonts on Datazoba</h1>
 	<p>
-		<em>Do not use fonts hosted by The Pudding without written permission.</em>
+		<em>Do not use fonts hosted by Datazoba without written permission.</em>
 	</p>
 	<form>
 		<label for="size">font-size: {size}px</label>

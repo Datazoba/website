@@ -1,10 +1,10 @@
 # Svelte Starter
 
-This [starter template](https://github.com/the-pudding/svelte-starter) aims to quickly scaffold a [SvelteKit](https://kit.svelte.dev/) project, designed around data-driven, visual stories at [The Pudding](https://pudding.cool).
+This [starter template](https://github.com/datazoba/svelte-starter) aims to quickly scaffold a [SvelteKit](https://kit.svelte.dev/) project, designed around data-driven, visual stories at [Datazoba](https://datazoba.com).
 
 ### Notes
-* _Do not use or reproduce The Pudding logos or fonts without written permission._
-* _Please remove the [goatcounter analytics line](https://github.com/the-pudding/svelte-starter/blob/main/src/app.html#L9) ._
+* _Do not use or reproduce Datazoba logos or fonts without written permission._
+* _Please remove the [goatcounter analytics line](https://github.com/datazoba/svelte-starter/blob/main/src/app.html#L9) ._
 * _Prettier Formatting: Disable any text editor Prettier extensions to take advantage of the built-in rules._
 
 ### Features
@@ -19,7 +19,7 @@ This [starter template](https://github.com/the-pudding/svelte-starter) aims to q
 ## Quickstart
 #### From Scratch
 * Click the green `Use this template` button above.
-* Alternatively: `npx degit the-pudding/svelte-starter my-project`
+* Alternatively: `npx degit datazoba/svelte-starter my-project`
 
 #### Pre-existing Project
 * clone the repo
@@ -43,7 +43,7 @@ Check out the `Makefile` for specific tasks.
 npm run staging
 ```
 
-### Production (on AWS for pudding.cool)
+### Production (on AWS for datazoba.com)
 ```bash
 npm run prodution
 ```
@@ -62,7 +62,7 @@ Make sure you have a `.env` file in your root with a value of `PASSWORD=yourpass
 make protect
 ```
 
-Then run either `make github` or `make pudding`.
+Then run either `make github` or `make datazoba`.
 
 ## Style
 
@@ -109,8 +109,8 @@ Located in `src/components`.
 import Example from "$components/Example.svelte";
 ```
 
-* `Footer.svelte`: Pudding recirculation and social links.
-* `Header.svelte`: Pudding masthead.
+* `Footer.svelte`: Datazoba recirculation and social links.
+* `Header.svelte`: Datazoba masthead.
 
 ### Helper Components
 
