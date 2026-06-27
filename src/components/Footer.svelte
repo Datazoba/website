@@ -6,34 +6,34 @@
 	import Story from "$components/Footer.Story.svelte";
 
 	// custom to starter
-	const base = "https://pudding.cool";
+	const base = "https://datazoba.com";
 	let stories = $state([]);
 	let storyCount = $state(0);
 
 	let { recirc = false, recent = true, recircImages = false } = $props();
 
 	const v = Date.now();
-	const url = `https://pudding.cool/assets/data/stories.json?v=${v}`;
+	const url = `https://datazoba.com/assets/data/stories.json?v=${v}`;
 
 	const about = [
-		{ name: "Our Team", url: "https://pudding.cool/about" },
-		{ name: "Our Resources", url: "https://pudding.cool/resources/" },
-		{ name: "Pitch a Story", url: "https://pudding.cool/pitch/" },
-		{ name: "Brand Partnerships", url: "https://polygraph.cool" },
-		{ name: "Privacy Policy", url: "https://pudding.cool/pitch/" }
+		{ name: "Our Team", url: "https://datazoba.com/about" },
+		{ name: "Our Resources", url: "https://datazoba.com/resources/" },
+		{ name: "Pitch a Story", url: "https://datazoba.com/pitch/" },
+		{ name: "Brand Partnerships", url: "https://datazoba.com" },
+		{ name: "Privacy Policy", url: "https://datazoba.com/pitch/" }
 	];
 
 	const follow = [
 		{
 			name: "Instagram",
-			url: "https://www.instagram.com/the.pudding"
+			url: "https://www.instagram.com/datazoba"
 		},
-		{ name: "Email", url: "https://pudding.cool/subscribe" },
-		{ name: "Bluesky", url: "https://bsky.app/profile/puddingviz.bsky.social" },
-		{ name: "YouTube", url: "https://www.youtube.com/@thepudding" },
-		{ name: "Twitter/X", url: "https://twitter.com/puddingviz/" },
-		{ name: "Threads", url: "https://www.threads.com/@the.pudding" },
-		{ name: "RSS", url: "https://pudding.cool/feed/index.xml" }
+		{ name: "Email", url: "https://datazoba.com/subscribe" },
+		{ name: "Bluesky", url: "https://bsky.app/profile/datazoba.com" },
+		{ name: "YouTube", url: "https://www.youtube.com/@datazoba" },
+		{ name: "Twitter/X", url: "https://twitter.com/datazoba" },
+		{ name: "Threads", url: "https://www.threads.com/@datazoba" },
+		{ name: "RSS", url: "https://datazoba.com/feed/index.xml" }
 	];
 
 	onMount(async () => {
@@ -89,7 +89,7 @@
 			<div class="cta-wrapper">
 				<section class="donate">
 					<div class="img-wrapper">
-						<a href="https://patreon.com/thepudding">
+						<a href="https://datazoba.com">
 							<img
 								src="{base}/assets/stickers/donate-footer-square@2x.png"
 								alt="donate sticker"
@@ -98,7 +98,7 @@
 					</div>
 					<div class="text-wrapper">
 						<p>
-							<a href="https://patreon.com/thepudding">Support us on Patreon</a>
+							<a href="https://datazoba.com">Support Datazoba</a>
 							<span class="arrow">{@html linkOutArrow}</span>
 						</p>
 						<p>
@@ -111,7 +111,7 @@
 
 				<section class="subscribe">
 					<div class="img-wrapper">
-						<a href="https://pudding.cool/subscribe">
+						<a href="https://datazoba.com/subscribe">
 							<img
 								src="{base}/assets/stickers/subscribe-footer@2x.png"
 								alt="donate sticker"
@@ -120,7 +120,7 @@
 					</div>
 					<div class="text-wrapper">
 						<p>
-							<a href="https://pudding.cool/subscribe"
+							<a href="https://datazoba.com/subscribe"
 								>Subscribe to our newsletter</a
 							>
 							<span class="arrow">{@html linkOutArrow}</span>
@@ -134,7 +134,7 @@
 			</div>
 
 			<section class="links">
-				<a class="img-wrapper" href="https://pudding.cool">
+				<a class="img-wrapper" href="https://datazoba.com">
 					<span class="wordmark">{@html wordmark}</span>
 				</a>
 				<div class="inner">

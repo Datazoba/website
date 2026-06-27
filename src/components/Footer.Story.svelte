@@ -4,7 +4,7 @@
 		$props();
 
 	// custom to starter
-	const base = "https://pudding.cool";
+	const base = "https://datazoba.com";
 
 	const youtube = href.includes("youtube") || href.includes("youtu.be");
 	const dir = resource ? "resources" : "screenshots";
